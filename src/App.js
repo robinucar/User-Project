@@ -66,24 +66,14 @@ const App = () => {
               <button
               style = {buttonStyle}
               onClick = {hideUsersDetailsHandler}> Hide Users Details </button>
-            <UserOutput userName = {userNameState.users[0].userName}
-                        surName = {userNameState.users[0].surName}
-                        dob = {userNameState.users[0].dob}
-                        country = {userNameState.users[0].country}
-                        />
-            <hr></hr>
-                        <UserOutput userName = {userNameState.users[1].userName}
-                        surName = {userNameState.users[1].surName}
-                        dob = {userNameState.users[1].dob}
-                        country = {userNameState.users[1].country}
+              {userNameState.users.map(user => {
+                return <UserOutput
+                          userName = {user.userName}
+                          surName = {user.surName}
+                          dob = {user.dob}
+                          country = {user.country} />
+              })}
 
-                        />
-            <hr></hr>
-                        <UserOutput userName = {userNameState.users[2].userName}
-                        surName = {userNameState.users[2].surName}
-                        dob = {userNameState.users[2].dob}
-                        country = {userNameState.users[2].country}
-                        />
 
             <hr></hr>
         </div>
