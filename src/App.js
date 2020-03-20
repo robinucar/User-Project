@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import UserInput from './Components/UserInput';
+
 import UserOutput from './Components/UserOutput';
 
 
@@ -28,15 +28,7 @@ const App = () => {
     })
   }
 
-  const changeNameHandler = (event) => {
-    setUserNameStates({
-      users: [
-        {userName: 'Mehmet', surName: 'Ucar', dob: '29/03/1988', country: 'The United Kingdom'},
-        {userName: event.target.value, surName: 'Saritas', dob: '23/05/1997', country: 'Austria'},
-        {userName: 'Figen', surName: 'Ucar', dob: '27/11/1971', country: 'Austria'}
-      ]
-    })
-  }
+
   const toggleUsersHandler = () => {
     const doesShow = showUsersState.showUsers;
     setShowUsersState({
@@ -63,16 +55,11 @@ const App = () => {
     padding: '8px',
     margin: '10px'
   }
-  return (
 
-    <div className = 'App'>
-      <h1>Users</h1>
-      <button
-        style = {buttonStyle}
-        onClick = { toggleUsersHandler }>Show Users</button>
-      <hr></hr>
-      { showUsersState.showUsers === true ?
-        <div>
+  let users = null;
+  if(showUsersState.showUsers){
+    users = (
+    <div>
             <button
               style = {buttonStyle}
               onClick = {showUsersDetailsHandler}> Show Users Details </button>
@@ -99,8 +86,22 @@ const App = () => {
                         />
 
             <hr></hr>
-        </div> : null
-      }
+        </div>
+    )
+  }
+
+
+  return (
+
+    <div className = 'App'>
+      <h1>Users</h1>
+      <button
+        style = {buttonStyle}
+        onClick = { toggleUsersHandler }>Show Users</button>
+      <hr></hr>
+      {users}
+
+
     </div>
   );
 }
