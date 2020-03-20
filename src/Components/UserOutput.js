@@ -7,7 +7,7 @@ const userOutput = (props) => {
 
       <p>User Name: { userName }</p>
       <p>User Surname: {surName}</p>
-      <p>User Dateofbirth: { dob }</p>
+      <p>User Date Of Birth: { dob }</p>
       <p>User Country: { country }</p>
 
     </div>

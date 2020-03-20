@@ -11,8 +11,11 @@ const App = () => {
       {userName: 'Mehmet', surName: null, dob: null, country: null},
       {userName: 'Deniz', surName: null, dob: null, country: null},
       {userName: 'Figen', surName: null, dob: null, country: null}
-    ]
+    ],
+  })
 
+  const  [showUsersState, setShowUsersState] = useState({
+    showUsers:false
   })
   console.log(userNameState)
   const showUsersDetailsHandler = () => {
@@ -34,13 +37,31 @@ const App = () => {
       ]
     })
   }
+  const toggleUsersHandler = () => {
+    const doesShow = showUsersState.showUsers;
+    setShowUsersState({
+      showUsers: !doesShow
+    });
+  }
+
+  const hideUsersDetailsHandler = () => {
+    setUserNameStates({
+      users: [
+        {userName: 'Mehmet', surName: null, dob: null, country: null},
+        {userName: 'Deniz', surName: null, dob: null, country: null},
+        {userName: 'Figen', surName: null, dob: null, country: null}
+      ],
+    })
+
+  }
 
   const buttonStyle = {
     backgroundColor: 'black',
     color: 'white',
     font: 'inherit',
     border: '1px solid blue',
-    padding: '8px'
+    padding: '8px',
+    margin: '10px'
   }
   return (
 
@@ -48,30 +69,38 @@ const App = () => {
       <h1>Users</h1>
       <button
         style = {buttonStyle}
-        onClick = { showUsersDetailsHandler }>Show Details</button>
+        onClick = { toggleUsersHandler }>Show Users</button>
       <hr></hr>
-      <UserInput changed = {changeNameHandler}
-                 currentName = {userNameState.users[1].userName}/>
-      <UserOutput userName = {userNameState.users[0].userName}
-                  surName = {userNameState.users[0].surName}
-                  dob = {userNameState.users[0].dob}
-                  country = {userNameState.users[0].country}
-                  />
-      <hr></hr>
-                  <UserOutput userName = {userNameState.users[1].userName}
-                  surName = {userNameState.users[1].surName}
-                  dob = {userNameState.users[1].dob}
-                  country = {userNameState.users[1].country}
+      { showUsersState.showUsers === true ?
+        <div>
+            <button
+              style = {buttonStyle}
+              onClick = {showUsersDetailsHandler}> Show Users Details </button>
+              <button
+              style = {buttonStyle}
+              onClick = {hideUsersDetailsHandler}> Hide Users Details </button>
+            <UserOutput userName = {userNameState.users[0].userName}
+                        surName = {userNameState.users[0].surName}
+                        dob = {userNameState.users[0].dob}
+                        country = {userNameState.users[0].country}
+                        />
+            <hr></hr>
+                        <UserOutput userName = {userNameState.users[1].userName}
+                        surName = {userNameState.users[1].surName}
+                        dob = {userNameState.users[1].dob}
+                        country = {userNameState.users[1].country}
 
-                  />
-      <hr></hr>
-                  <UserOutput userName = {userNameState.users[2].userName}
-                  surName = {userNameState.users[2].surName}
-                  dob = {userNameState.users[2].dob}
-                  country = {userNameState.users[2].country}
-                  />
+                        />
+            <hr></hr>
+                        <UserOutput userName = {userNameState.users[2].userName}
+                        surName = {userNameState.users[2].surName}
+                        dob = {userNameState.users[2].dob}
+                        country = {userNameState.users[2].country}
+                        />
 
-      <hr></hr>
+            <hr></hr>
+        </div> : null
+      }
     </div>
   );
 }
