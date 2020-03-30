@@ -47,7 +47,7 @@ const App = () => {
   }
 
   const deleteUsersHandler = (userIndex) => {
-    users = [...userNameState.users];
+    const users = [...userNameState.users];
     users.splice(userIndex, 1);
     setUserNameStates({users: users});
 
@@ -87,13 +87,23 @@ const App = () => {
             <hr></hr>
       </div>
     )
+    buttonStyle.backgroundColor = 'green'
   }
 
+  const classes = [];
+  if(userNameState.users.length > 0){
+    classes.push('bold')
+  }
 
+  if(userNameState.users.length <= 1){
+    classes.push('red')
+  }
+  const usersLength = `There are ${ userNameState.users.length } users...`
   return (
 
     <div className = 'App'>
       <h1>Users</h1>
+      <p className={classes.join(' ')}>{usersLength}</p>
       <button
         style = {buttonStyle}
         onClick = { toggleUsersHandler }>Show Users</button>
