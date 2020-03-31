@@ -19,6 +19,15 @@ border: 1px solid black;
 }
 `;
 
+const StyledP = styled.p`
+color: ${props => props.alt > 0 ? 'black' : 'red' };
+font-weight: ${props => props.alt > 0 ? 'inherit' : '900' };
+background-color: ${props => props.alt > 0 ? 'inherit' : 'black' };
+width: ${props => props.alt > 0 ? 'inherit' : '290px' };
+margin: ${props => props.alt > 0 ? 'inherit' : 'auto' };
+padding: ${props => props.alt > 0 ? 'inherit' : '10px' };
+`
+
 const App = () => {
   const [userNameState, setUserNameStates] = useState({
     users: [
@@ -95,23 +104,16 @@ const App = () => {
             <hr></hr>
       </div>
     )
-    //buttonStyle.backgroundColor = 'green'
+
   }
 
-  const classes = [];
-  if(userNameState.users.length > 0){
-    classes.push('bold')
-  }
 
-  if(userNameState.users.length <= 1){
-    classes.push('red')
-  }
   const usersLength = `There are ${ userNameState.users.length } users...`
   return (
 
     <div className = 'App'>
       <h1>Users</h1>
-      <p className={classes.join(' ')}>{usersLength}</p>
+      <StyledP alt = { userNameState.users.length }>{usersLength}</StyledP>
       <StyledBtn1
         onClick = { toggleUsersHandler }>Show Users
       </StyledBtn1>
