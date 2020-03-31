@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
 import './App.css';
 import UserOutput from './Components/UserOutput';
+import styled from 'styled-components'
 
-
+const StyledBtn1 = styled.button`
+background-color: white;
+color: black;
+font: inherit;
+border: 1px solid blue;
+padding: 8px;
+margin: 10px;
+cursor: pointer;
+border: 1px solid black;
+&:focus {outline:0;};
+&:hover {
+  background-color: black;
+  color: white;
+}
+`;
 
 const App = () => {
   const [userNameState, setUserNameStates] = useState({
@@ -53,25 +68,18 @@ const App = () => {
 
   }
 
-  const buttonStyle = {
-    backgroundColor: 'black',
-    color: 'white',
-    font: 'inherit',
-    border: '1px solid blue',
-    padding: '8px',
-    margin: '10px'
-  }
 
   let users = null;
   if(showUsersState.showUsers){
     users = (
       <div>
-            <button
-                style = { buttonStyle }
-                onClick = { showUsersDetailsHandler }> Show Users Details </button>
-              <button
-                style = { buttonStyle }
-                onClick = { hideUsersDetailsHandler }> Hide Users Details </button>
+            <StyledBtn1
+                onClick = { showUsersDetailsHandler }> Show Users Details
+            </StyledBtn1>
+
+             <StyledBtn1
+                onClick = { hideUsersDetailsHandler }> Hide Users Details
+              </StyledBtn1>
               {userNameState.users.map((user, index) => {
                 return <UserOutput
                           click = { () => deleteUsersHandler(index)}
@@ -87,7 +95,7 @@ const App = () => {
             <hr></hr>
       </div>
     )
-    buttonStyle.backgroundColor = 'green'
+    //buttonStyle.backgroundColor = 'green'
   }
 
   const classes = [];
@@ -104,9 +112,9 @@ const App = () => {
     <div className = 'App'>
       <h1>Users</h1>
       <p className={classes.join(' ')}>{usersLength}</p>
-      <button
-        style = {buttonStyle}
-        onClick = { toggleUsersHandler }>Show Users</button>
+      <StyledBtn1
+        onClick = { toggleUsersHandler }>Show Users
+      </StyledBtn1>
       <hr></hr>
       {users}
 
