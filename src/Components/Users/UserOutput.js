@@ -1,23 +1,6 @@
 import React from 'react';
-import './Users1.css'
-import styled from 'styled-components';
+import StyleBtn from '../StyleBtn';
 
-const StyledBtn = styled.button`
-width: 20%;
-margin: 16px auto;
-border: 4px solid #eee;
-box-shadow: 0 2px 2px #ccc;
-padding: 16px;
-text-align: center;
-background-color:white;
-color:black;
-font-size: 15px;
-&:focus {outline:0;};
-&:hover {
-  background-color:black;
-  color:white;
-}
-`
 
 const userOutput = (props) => {
   const { userName, surName, dob, country, click } = props
@@ -29,7 +12,7 @@ const userOutput = (props) => {
       <p>User Date Of Birth: { dob }</p>
       <p>User Country: { country }</p>
       <p onClick = { click }>
-        <StyledBtn>Delete Me</StyledBtn>
+        <StyleBtn>Delete Me</StyleBtn>
       </p>
 
     </div>

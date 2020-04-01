@@ -1,32 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
-import UserOutput from './Components/UserOutput';
-import styled from 'styled-components'
+import Users from '../Users/Users'
+import Cockpit from '../Cockpit'
+import StyleBtn1 from '../StyleBtn1'
 
-const StyledBtn1 = styled.button`
-background-color: white;
-color: black;
-font: inherit;
-border: 1px solid blue;
-padding: 8px;
-margin: 10px;
-cursor: pointer;
-border: 1px solid black;
-&:focus {outline:0;};
-&:hover {
-  background-color: black;
-  color: white;
-}
-`;
 
-const StyledP = styled.p`
-color: ${props => props.alt > 0 ? 'black' : 'red' };
-font-weight: ${props => props.alt > 0 ? 'inherit' : '900' };
-background-color: ${props => props.alt > 0 ? 'inherit' : 'black' };
-width: ${props => props.alt > 0 ? 'inherit' : '290px' };
-margin: ${props => props.alt > 0 ? 'inherit' : 'auto' };
-padding: ${props => props.alt > 0 ? 'inherit' : '10px' };
-`
+
+
 
 const App = () => {
   const [userNameState, setUserNameStates] = useState({
@@ -82,25 +62,16 @@ const App = () => {
   if(showUsersState.showUsers){
     users = (
       <div>
-            <StyledBtn1
+            <StyleBtn1
                 onClick = { showUsersDetailsHandler }> Show Users Details
-            </StyledBtn1>
+            </StyleBtn1>
 
-             <StyledBtn1
+             <StyleBtn1
                 onClick = { hideUsersDetailsHandler }> Hide Users Details
-              </StyledBtn1>
-              {userNameState.users.map((user, index) => {
-                return <UserOutput
-                          click = { () => deleteUsersHandler(index)}
-                          userName = {user.userName}
-                          surName = {user.surName}
-                          dob = {user.dob}
-                          country = {user.country}
-                          key = {user.id}
-                          ></UserOutput>
-              })}
-
-
+              </StyleBtn1>
+              <Users
+                users = {userNameState.users}
+                deleted = {deleteUsersHandler}/>
             <hr></hr>
       </div>
     )
@@ -108,16 +79,13 @@ const App = () => {
   }
 
 
-  const usersLength = `There are ${ userNameState.users.length } users...`
+
   return (
 
     <div className = 'App'>
-      <h1>Users</h1>
-      <StyledP alt = { userNameState.users.length }>{usersLength}</StyledP>
-      <StyledBtn1
-        onClick = { toggleUsersHandler }>Show Users
-      </StyledBtn1>
-      <hr></hr>
+      <Cockpit
+      clicked = {toggleUsersHandler}
+      status = { userNameState.users.length} />
       {users}
 
 
