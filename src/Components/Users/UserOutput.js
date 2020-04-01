@@ -1,5 +1,5 @@
 import React from 'react';
-import StyleBtn from '../StyleBtn';
+import StyleBtn from '../ButtonStyle/StyleBtn';
 
 
 const userOutput = (props) => {

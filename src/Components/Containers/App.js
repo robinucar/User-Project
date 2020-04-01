@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Users from '../Users/Users'
 import Cockpit from '../Cockpit'
-import StyleBtn1 from '../StyleBtn1'
+import StyleBtn1 from '../ButtonStyle/StyleBtn1'
 
 
 
